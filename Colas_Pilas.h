@@ -10,6 +10,7 @@ int C1[200];
 int C2[200];
 int C3[200];
 int C4[200];
+int Cop[200];
 
 int totalC1=0;
 int totalC2=0;
@@ -83,17 +84,57 @@ void mostrarC4(nodo4 *&frente4, nodo4 *&fin4, int &numero);
 void mostrarguardado();
 // Funcion para escojer una caja al azar
 void elegir(int n){	
+
+
+
 	int opc=0;
 	srand(time(NULL));
 	
 	opc	=  1 + rand() % (5 - 1);
 	
+	
+	
+	
+	if (atendidoC1 >=5){
+		opc =2;
+		if(atendidoC2 >=5){
+			opc=3;
+			if(atendidoC3 >=5){	
+				opc=4;}}}
+				
+		if (atendidoC2 >=5){
+		opc =3;
+		if(atendidoC3 >=5){
+			opc=4;
+			if(atendidoC4 >=5){	
+				opc=1;}}}					
+	
+		if (atendidoC3 >=5){
+		opc =4;
+		if(atendidoC4 >=5){
+			opc=1;
+			if(atendidoC1 >=5){	
+				opc=2;}}}
+		
+			if (atendidoC4 >=5){
+		opc =1;
+		if(atendidoC1 >=5){
+			opc=2;
+			if(atendidoC2 >=5){	
+				opc=3;}}}
+	
+	
+	
 	switch(opc){
 		//cout<<"\t Cola: "<<opc<<" Numero= "<<n<<endl; cliente--;
-		case 1:  insertar_Cola1(frente1,fin1,n);  break;
-		case 2:  insertar_Cola2(frente2,fin2,n);  break;
-		case 3:  insertar_Cola3(frente3,fin3,n);  break;
-		case 4:  insertar_Cola4(frente4,fin4,n);  break;
+		case 1:insertar_Cola1(frente1,fin1,n);
+		break;
+		case 2:  insertar_Cola2(frente2,fin2,n);
+		break;
+		case 3: insertar_Cola3(frente3,fin3,n);
+		break;
+		case 4: insertar_Cola4(frente4,fin4,n);
+		break;
 	}	
 }
 
@@ -149,15 +190,19 @@ void eliminar_Policia(Nodo *&frente, Nodo *&fin, int &numero){
 
   void mostrar_Policia(Nodo *&frente, Nodo *&fin, int &numero){
 	cout<<"Policia: ";
+	int i = 0;
 	while (frente != NULL){
 		
 		
 		eliminar_Policia(frente,fin,numero);
 		Sleep(1000);
         if(frente != NULL){
-         cout<<numero<<" ";   
+         cout<<numero<<" ";  
+		  Cop[i] = numero;
+           i = i+1;   
         }
         else{
+        	Cop[i] = numero;
             cout<<numero<<" .";
         }
         
@@ -171,9 +216,14 @@ void eliminar_Policia(Nodo *&frente, Nodo *&fin, int &numero){
 
 //caja 1
 
-
+int i = 0;
 //insertamos en cola caja1
 void insertar_Cola1(nodo *&frente1,nodo *&fin1,int numero){
+		
+	  C1[i] = numero;
+           i = i+1;
+		   totalC1+=numero;   
+	atendidoC1 = atendidoC1 +1;
 	
 	cliente--;
     nodo *nuevo_nodo = new nodo();
@@ -214,7 +264,7 @@ void eliminar_Cola1(nodo *&frente1, nodo *&fin1, int &numero){
 //mostramos de la caja 1
 void mostrarC1(nodo *&frente1, nodo *&fin1, int &numero){
  	//cout<<"\nCaja1: ";
- 	int i = 0;
+ 	//int i = 0;
 	while (frente1 != NULL){
 		
 		Sleep(1000);
@@ -222,15 +272,15 @@ void mostrarC1(nodo *&frente1, nodo *&fin1, int &numero){
 			
         if(frente1 != NULL){
            //cout<<numero<<" ";
-        C1[i] = numero;
-           i = i+1;   
+       // C1[i] = numero;
+         //  i = i+1;   
         }
         else{
        C1[i] = numero;
           //cout<<numero<<" .";
         }
-        totalC1+=numero;
-        atendidoC1++;
+        //totalC1+=numero;
+        //atendidoC1++;
     }
     
 }
@@ -242,9 +292,13 @@ void mostrarguardado(){
 
 
 //caja2
-
+int i2 =0;
 //insertampos en la caja 2
 void insertar_Cola2(nodo2 *&frente2,nodo2 *&fin2,int numero){
+	  C2[i2] = numero;
+           i2 ++; 
+		   totalC2+=numero;  
+           atendidoC2 ++;
 	
 	cliente--;
     nodo2 *nuevo_nodo = new nodo2();
@@ -284,7 +338,7 @@ void eliminar_Cola2(nodo2 *&frente2, nodo2 *&fin2, int &numero){
 //mostramos a la caja 2
   void mostrarC2(nodo2 *&frente2, nodo2 *&fin2, int &numero){
 	//cout<<"\nCaja2: ";
-	 	int i = 0;
+	 //	int i = 0;
 	while (frente2 != NULL){
 		
 		eliminar_Cola2(frente2,fin2,numero);
@@ -292,21 +346,28 @@ void eliminar_Cola2(nodo2 *&frente2, nodo2 *&fin2, int &numero){
 		Sleep(1000);
         if(frente2 != NULL){
          //cout<<numero<<" "; 
-		    C2[i] = numero;
-           i = i+1;     
+		   // C2[i] = numero;
+           //i = i+1;     
         }
         else{
-        	C2[i] = numero;
+        //	C2[i] = numero;
             //cout<<numero<<" .";
         }
-        totalC2+=numero;
-         atendidoC2++;
+        //totalC2+=numero;
+         //atendidoC2++;
 	}
     
 }
 
 //insertampos en la caja 3
+int i3 =0;
 void insertar_Cola3(nodo3 *&frente3,nodo3 *&fin3,int numero){
+	 C3[i3] = numero;
+           i3 ++;  
+           totalC3+=numero;
+		   atendidoC3 ++;
+	 
+	
 	cliente--;
     nodo3 *nuevo_nodo = new nodo3();
 
@@ -345,7 +406,7 @@ void eliminar_Cola3(nodo3 *&frente3, nodo3 *&fin3, int &numero){
 //mostramos a la caja 3
   void mostrarC3(nodo3 *&frente3, nodo3 *&fin3, int &numero){
 	//cout<<"\nCaja3: ";
-		int i = 0;
+	//	int i = 0;
 	while (frente3 != NULL){
 		
 		eliminar_Cola3(frente3,fin3,numero);
@@ -353,21 +414,26 @@ void eliminar_Cola3(nodo3 *&frente3, nodo3 *&fin3, int &numero){
 		Sleep(1000);
         if(frente3 != NULL){
          //cout<<numero<<" ";  
-		    C3[i] = numero;
-           i = i+1;   
+		   // C3[i] = numero;
+         //  i = i+1;   
         }
         else{
-        	 C3[i] = numero;
+        	// C3[i] = numero;
             //cout<<numero<<" .";
         }
-        totalC3+=numero;
-         atendidoC3++;
+        //totalC3+=numero;
+         //atendidoC3++;
 	}
     
 }
 
 //insertampos en la caja 4
+int i4 = 0;
 void insertar_Cola4(nodo4 *&frente4,nodo4 *&fin4,int numero){
+		 C4[i4] = numero;
+           i4 ++;  
+           totalC4+=numero;
+           atendidoC4 ++;
 	
 	cliente--;
     nodo4 *nuevo_nodo = new nodo4();
@@ -407,7 +473,7 @@ void eliminar_Cola4(nodo4 *&frente4, nodo4 *&fin4, int &numero){
 //mostramos a la caja 4
   void mostrarC4(nodo4 *&frente4, nodo4 *&fin4, int &numero){
 	//cout<<"\nCaja4: ";
-		int i = 0;
+		//int i = 0;
 	while (frente4 != NULL){
 		
 		eliminar_Cola4(frente4,fin4,numero);
@@ -415,15 +481,15 @@ void eliminar_Cola4(nodo4 *&frente4, nodo4 *&fin4, int &numero){
 		Sleep(1000);
         if(frente4 != NULL){
          //cout<<numero<<" "; 
-		     C4[i] = numero;
-           i = i+1;    
+		    // C4[i] = numero;
+           //i = i+1;    
         }
         else{
         	C4[i] = numero;
             //cout<<numero<<" .";
         }
-        totalC4+=numero;
-         atendidoC4++;
+        //totalC4+=numero;
+         //atendidoC4++;
 	}
     
 }
