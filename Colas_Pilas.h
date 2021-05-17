@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <time.h>
 #include <stdlib.h>
+#include <thread>
 
 using namespace std;
 
@@ -94,6 +95,7 @@ pila3 *caja3 = NULL;
 pila4 *caja4 = NULL;
 
 
+void atp();
 void insertar_Policia(Nodo *&frente,Nodo *&fin,int numero);
 void eliminar_Policia(Nodo *&frente, Nodo *&fin, int &numero);
 void mostrar_Policia(Nodo *&frente, Nodo *&fin, int &numero);
@@ -133,7 +135,7 @@ void sacarPila4(pila4 *&, int &);
 void mostrarPila4(pila4 *&,int &);
 
 
-void mostrarguardado();
+
 
 
 // Funcion para escojer una caja al azar
@@ -177,11 +179,12 @@ void elegir(int n){
 			if(atendidoC2 >=5){	
 				opc=3;}}}
 	
+
 	
 	
 	switch(opc){
 		//cout<<"\t Cola: "<<opc<<" Numero= "<<n<<endl; cliente--;
-		case 1:insertar_Cola1(frente1,fin1,n);
+		case 1:  insertar_Cola1(frente1,fin1,n);
 		break;
 		case 2:  insertar_Cola2(frente2,fin2,n);
 		break;
@@ -277,6 +280,9 @@ void insertar_Cola1(nodo *&frente1,nodo *&fin1,int numero){
 	  C1[i] = numero;
 	  
            i = i+1;
+           
+            agregarPila1(caja1,numero);
+        	mostrarPila1(caja1,numero);
 		   //totalC1+=numero;   
 	atendidoC1 = atendidoC1 +1;
 	
@@ -315,7 +321,6 @@ void eliminar_Cola1(nodo *&frente1, nodo *&fin1, int &numero){
 }
 
 
-
 //mostramos de la caja 1
 void mostrarC1(nodo *&frente1, nodo *&fin1, int &numero){
  	//cout<<"\nCaja1: ";
@@ -331,20 +336,76 @@ void mostrarC1(nodo *&frente1, nodo *&fin1, int &numero){
          //  i = i+1;   
         }
         else{
-       C1[i] = numero;
+      // C1[i] = numero;
           //cout<<numero<<" .";
         }
         //totalC1+=numero;
         //atendidoC1++;
-        agregarPila1(caja1,numero);
+        
+         // agregarPila1(caja1,numero);
+       //thread at(atp);
+        
     }
     
 }
 
-void mostrarguardado(){
+
+void agregarPila1(pila1 *&caja1, int numero){
+	totalC1+=numero;
+	pila1 *nuevo_nodo = new pila1();
+	nuevo_nodo ->dato = numero;
+	nuevo_nodo ->siguiente = caja1;
+	caja1= nuevo_nodo;
 	
-//	cout<<Ca[0]<<Ca[1]<<Ca[2]<<Ca[3]<<endl;
+
 }
+
+void sacarPila1(pila1 *&caja1, int &numero){
+	
+	pila1 *aux = caja1;
+	numero = aux->dato;
+	caja1 = aux->siguiente;
+	delete aux;
+	mostrarPila1(caja1,numero);
+}
+
+int pi1=0;
+
+void mostrarPila1(pila1 *&caja1,int &numero){
+	
+	while (caja1 != NULL){
+		sacarPila1(caja1,numero);
+		Sleep(2000);
+		//totalC1+=numero;
+		P1[pi1]=numero;
+	//	C1[pi1]=0;
+		pi1++;	
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //caja2
@@ -353,6 +414,8 @@ int i2 =0;
 void insertar_Cola2(nodo2 *&frente2,nodo2 *&fin2,int numero){
 	  C2[i2] = numero;
            i2 ++; 
+            agregarPila2(caja2,numero);
+        	mostrarPila2(caja2,numero);
 		   //totalC2+=numero;  
            atendidoC2 ++;
 	
@@ -421,6 +484,9 @@ int i3 =0;
 void insertar_Cola3(nodo3 *&frente3,nodo3 *&fin3,int numero){
 	 C3[i3] = numero;
            i3 ++;  
+           
+              agregarPila3(caja3,numero);
+        	mostrarPila3(caja3,numero);
           // totalC3+=numero;
 		   atendidoC3 ++;
 	 
@@ -490,6 +556,8 @@ int i4 = 0;
 void insertar_Cola4(nodo4 *&frente4,nodo4 *&fin4,int numero){
 		 C4[i4] = numero;
            i4 ++;  
+              agregarPila4(caja4,numero);
+        	mostrarPila4(caja4,numero);
            //totalC4+=numero;
            atendidoC4 ++;
 	
@@ -553,7 +621,7 @@ void eliminar_Cola4(nodo4 *&frente4, nodo4 *&fin4, int &numero){
 }
 
 
-
+/*
 void agregarPila1(pila1 *&caja1, int numero){
 	totalC1+=numero;
 	pila1 *nuevo_nodo = new pila1();
@@ -574,6 +642,7 @@ void sacarPila1(pila1 *&caja1, int &numero){
 }
 
 int pi1=0;
+
 void mostrarPila1(pila1 *&caja1,int &numero){
 	
 	while (caja1 != NULL){
@@ -586,6 +655,15 @@ void mostrarPila1(pila1 *&caja1,int &numero){
 	}
 	
 }
+
+*/
+
+
+
+
+
+
+
 
 void agregarPila2(pila2 *&caja2, int numero){
 	totalC2+=numero;
@@ -612,7 +690,7 @@ void mostrarPila2(pila2 *&caja2,int &numero){
 		Sleep(2000);
 		//totalC2+=numero;
 		P2[pi2]=numero;
-		C2[pi2]=0;
+	//	C2[pi2]=0;
 		pi2++;	
 	}
 	
@@ -644,7 +722,7 @@ void mostrarPila3(pila3 *&caja3,int &numero){
 		Sleep(2000);
 	//	totalC3+=numero;
 		P3[pi3]=numero;
-		C3[pi3]=0;
+	//	C3[pi3]=0;
 		pi3++;	
 	}
 	
@@ -675,7 +753,7 @@ void mostrarPila4(pila4 *&caja4,int &numero){
 		Sleep(2000);
 		//totalC4+=numero;
 		P4[pi4]=numero;
-		C4[pi4]=0;
+	//	C4[pi4]=0;
 		pi4++;	
 	}
 	
