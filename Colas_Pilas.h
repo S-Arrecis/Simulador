@@ -12,6 +12,12 @@ int C3[200];
 int C4[200];
 int Cop[200];
 
+int P1[200];
+int P2[200];
+int P3[200];
+int P4[200];
+//int Cop[200];
+
 int totalC1=0;
 int totalC2=0;
 int totalC3=0;
@@ -47,6 +53,26 @@ struct nodo4{
     nodo4 *siguiente;
 };
 
+struct pila1{
+	int dato;
+	pila1 *siguiente;
+};
+
+struct pila2{
+	int dato;
+	pila2 *siguiente;
+};
+
+struct pila3{
+	int dato;
+	pila3 *siguiente;
+};
+
+struct pila4{
+	int dato;
+	pila4 *siguiente;
+};
+
 Nodo *frente = NULL;
 Nodo *fin = NULL;
 
@@ -61,6 +87,12 @@ nodo3 *fin3 = NULL;
 
 nodo4 *frente4 = NULL;
 nodo4 *fin4 = NULL;
+
+pila1 *caja1 =NULL;
+pila2 *caja2 = NULL;
+pila3 *caja3 = NULL;
+pila4 *caja4 = NULL;
+
 
 void insertar_Policia(Nodo *&frente,Nodo *&fin,int numero);
 void eliminar_Policia(Nodo *&frente, Nodo *&fin, int &numero);
@@ -81,7 +113,29 @@ void mostrarC3(nodo3 *&frente3, nodo3 *&fin3, int &numero);
 void insertar_Cola4(nodo4 *&frente4,nodo4 *&fin4,int numero);
 void eliminar_Cola4(nodo4 *&frente4, nodo4 *&fin4, int &numero);
 void mostrarC4(nodo4 *&frente4, nodo4 *&fin4, int &numero);
+
+void agregarPila1(pila1 *&,int);
+void sacarPila1(pila1*&,int &);
+void mostrarPila1(pila1 *&,int &);
+
+void agregarPila2(pila2 *&,int);
+void sacarPila2(pila2 *&,int &);
+void mostrarPila2(pila2 *&,int &);
+
+
+void agregarPila3(pila3 *&,int);
+void sacarPila3(pila3*&,int &);
+void mostrarPila3(pila3 *&,int &);
+
+
+void agregarPila4(pila4 *&,int);
+void sacarPila4(pila4 *&, int &);
+void mostrarPila4(pila4 *&,int &);
+
+
 void mostrarguardado();
+
+
 // Funcion para escojer una caja al azar
 void elegir(int n){	
 
@@ -221,8 +275,9 @@ int i = 0;
 void insertar_Cola1(nodo *&frente1,nodo *&fin1,int numero){
 		
 	  C1[i] = numero;
+	  
            i = i+1;
-		   totalC1+=numero;   
+		   //totalC1+=numero;   
 	atendidoC1 = atendidoC1 +1;
 	
 	cliente--;
@@ -281,6 +336,7 @@ void mostrarC1(nodo *&frente1, nodo *&fin1, int &numero){
         }
         //totalC1+=numero;
         //atendidoC1++;
+        agregarPila1(caja1,numero);
     }
     
 }
@@ -297,7 +353,7 @@ int i2 =0;
 void insertar_Cola2(nodo2 *&frente2,nodo2 *&fin2,int numero){
 	  C2[i2] = numero;
            i2 ++; 
-		   totalC2+=numero;  
+		   //totalC2+=numero;  
            atendidoC2 ++;
 	
 	cliente--;
@@ -355,6 +411,7 @@ void eliminar_Cola2(nodo2 *&frente2, nodo2 *&fin2, int &numero){
         }
         //totalC2+=numero;
          //atendidoC2++;
+         agregarPila2(caja2,numero);
 	}
     
 }
@@ -364,7 +421,7 @@ int i3 =0;
 void insertar_Cola3(nodo3 *&frente3,nodo3 *&fin3,int numero){
 	 C3[i3] = numero;
            i3 ++;  
-           totalC3+=numero;
+          // totalC3+=numero;
 		   atendidoC3 ++;
 	 
 	
@@ -423,6 +480,7 @@ void eliminar_Cola3(nodo3 *&frente3, nodo3 *&fin3, int &numero){
         }
         //totalC3+=numero;
          //atendidoC3++;
+         agregarPila3(caja3,numero);
 	}
     
 }
@@ -432,7 +490,7 @@ int i4 = 0;
 void insertar_Cola4(nodo4 *&frente4,nodo4 *&fin4,int numero){
 		 C4[i4] = numero;
            i4 ++;  
-           totalC4+=numero;
+           //totalC4+=numero;
            atendidoC4 ++;
 	
 	cliente--;
@@ -490,6 +548,135 @@ void eliminar_Cola4(nodo4 *&frente4, nodo4 *&fin4, int &numero){
         }
         //totalC4+=numero;
          //atendidoC4++;
+         agregarPila4(caja4,numero);
+	}   
+}
+
+
+
+void agregarPila1(pila1 *&caja1, int numero){
+	totalC1+=numero;
+	pila1 *nuevo_nodo = new pila1();
+	nuevo_nodo ->dato = numero;
+	nuevo_nodo ->siguiente = caja1;
+	caja1= nuevo_nodo;
+	
+
+}
+
+void sacarPila1(pila1 *&caja1, int &numero){
+	
+	pila1 *aux = caja1;
+	numero = aux->dato;
+	caja1 = aux->siguiente;
+	delete aux;
+	
+}
+
+int pi1=0;
+void mostrarPila1(pila1 *&caja1,int &numero){
+	
+	while (caja1 != NULL){
+		sacarPila1(caja1,numero);
+		Sleep(2000);
+		//totalC1+=numero;
+		P1[pi1]=numero;
+		C1[pi1]=0;
+		pi1++;	
 	}
-    
+	
+}
+
+void agregarPila2(pila2 *&caja2, int numero){
+	totalC2+=numero;
+	pila2 *nuevo_nodo = new pila2();
+	nuevo_nodo ->dato = numero;
+	nuevo_nodo->siguiente = caja2;
+	caja2 = nuevo_nodo;
+
+}
+
+void sacarPila2(pila2 *&caja2, int &numero){
+	
+	pila2 *aux = caja2;
+	numero = aux->	dato;
+	caja2 = aux ->siguiente;
+	delete aux;
+	
+}
+int pi2=0;
+void mostrarPila2(pila2 *&caja2,int &numero){
+	
+	while (caja2 != NULL){
+		sacarPila2(caja2,numero);
+		Sleep(2000);
+		//totalC2+=numero;
+		P2[pi2]=numero;
+		C2[pi2]=0;
+		pi2++;	
+	}
+	
+}
+
+
+void agregarPila3(pila3 *&caja3, int numero){
+	totalC3+=numero;
+	pila3 *nuevo_nodo = new pila3();
+	nuevo_nodo ->dato = numero;
+	nuevo_nodo->siguiente = caja3;
+	caja3 = nuevo_nodo;
+
+}
+
+void sacarPila3(pila3 *&caja3, int &numero){
+	
+	pila3 *aux = caja3;
+	numero = aux->	dato;
+	caja3 = aux ->siguiente;
+	delete aux;
+	
+}
+int pi3=0;
+void mostrarPila3(pila3 *&caja3,int &numero){
+	
+	while (caja3 != NULL){
+		sacarPila3(caja3,numero);
+		Sleep(2000);
+	//	totalC3+=numero;
+		P3[pi3]=numero;
+		C3[pi3]=0;
+		pi3++;	
+	}
+	
+}
+
+void agregarPila4(pila4 *&caja4, int numero){
+	totalC4+=numero;
+	pila4 *nuevo_nodo = new pila4();
+	nuevo_nodo ->dato = numero;
+	nuevo_nodo->siguiente = caja4;
+	caja4 = nuevo_nodo;
+
+}
+
+void sacarPila4(pila4 *&caja4, int &numero){
+	
+	pila4 *aux = caja4;
+	numero = aux->	dato;
+	caja4 = aux ->siguiente;
+	delete aux;
+	
+}
+int pi4=0;
+void mostrarPila4(pila4 *&caja4,int &numero){
+	
+	while (caja4 != NULL){
+		sacarPila4(caja4,numero);
+		Sleep(2000);
+		//totalC4+=numero;
+		P4[pi4]=numero;
+		C4[pi4]=0;
+		pi4++;	
+	}
+	
 }

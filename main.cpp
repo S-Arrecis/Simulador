@@ -36,11 +36,18 @@ void mostrarfinal(){
 		
 			system("cls");
 			cout<<"\n\n"<<endl;
-	cout<<endl<<" Pila 1: "<<cjs[0].Fa <<" "<<cjs[0].Fb<<" "<<cjs[0].Fc<<"			" 
+		cout<<"\n\n"<<endl;
+	cout<<endl<<" Pila 1: "<<P1[0] <<" "<<P1[1]<<" "<<P1[2]<<" "<<P1[3]<<" "<<P1[4]<<"			" 
+		 		 " Pila 2: "<<P2[0] <<" "<<P2[1]<<" "<<P2[2]<<" "<<P2[3]<<" "<<P2[4]<<"			"
+		 		 " Pila 3: "<<P3[0] <<" "<<P3[1]<<" "<<P3[2]<<" "<<P3[3]<<" "<<P3[4]<<"			"
+		 		 " Pila 4: "<<P4[0] <<" "<<P4[1]<<" "<<P4[2]<<" "<<P4[3]<<" "<<P4[4]<<"			"
+		  		 <<endl;
+	
+	/*cout<<endl<<" Pila 1: "<<cjs[0].Fa <<" "<<cjs[0].Fb<<" "<<cjs[0].Fc<<"			" 
 		 		 " Pila 2: "<<cjs[1].Fa <<" "<<cjs[1].Fb<<" "<<cjs[1].Fc<<"			"
 		 		 " Pila 3: "<<cjs[2].Fa <<" "<<cjs[2].Fb<<" "<<cjs[2].Fc<<"			"
 		 		 " Pila 4: "<<cjs[3].Fa <<" "<<cjs[3].Fb<<" "<<cjs[3].Fc<<"			"
-		  		 <<endl;
+		  		 <<endl;*/
 
 	cout<<endl<<"Caja 1(Total: "<<totalC1 <<")"<<"		"
 			  <<"Caja 2(Total: "<<totalC2 <<")"<<"		"
@@ -94,8 +101,7 @@ void mostrarfinal(){
 cout<<atendidoC1<<endl;
 		
 		
-		
-		
+
 
 //num=200;
 
@@ -105,19 +111,72 @@ Sleep(1000);
 	
 }
 
+void mostrarPolicia(){
+	mostrar_Policia(frente,fin,numero);
+}
 
+void mostrarCaja1(){
+	mostrarC1(frente1,fin1,numero);
+}
 
+void mostrarCaja2(){
+	mostrarC2(frente2,fin2,numero);
+}
+
+void mostrarCaja3(){
+	mostrarC3(frente3,fin3,numero);
+}
+
+void mostrarCaja4(){
+	mostrarC4(frente4,fin4,numero);
+}
+
+void mostrarP1(){
+	mostrarPila1(caja1,numero);
+}
+
+void mostrarP2(){
+	mostrarPila2(caja2,numero);
+}
+
+void mostrarP3(){
+	mostrarPila3(caja3,numero);
+}
+
+void mostrarP4(){
+	mostrarPila4(caja4,numero);
+}
 
 int main(){
 	
-thread mtr(mostrarfinal);
+
+	
+	
+		
+   thread mtr(mostrarfinal);
 
 	numeros();	
-    mostrar_Policia(frente,fin,numero);
-    mostrarC1(frente1,fin1,numero);
-    mostrarC2(frente2,fin2,numero);
-    mostrarC3(frente3,fin3,numero);
-    mostrarC4(frente4,fin4,numero);
+	
+	thread hilo1(mostrarPolicia);
+	thread hilo2(mostrarCaja1);
+	thread hilo3(mostrarCaja2);
+	thread hilo4(mostrarCaja3);
+	thread hilo5(mostrarCaja4);
+	thread hilo6(mostrarP1);
+	thread hilo7(mostrarP2);
+	thread hilo8(mostrarP3);
+	thread hilo9(mostrarP4);
+    //mostrar_Policia(frente,fin,numero);
+    //mostrarC1(frente1,fin1,numero);
+    //mostrarC2(frente2,fin2,numero);
+    //mostrarC3(frente3,fin3,numero);
+    //mostrarC4(frente4,fin4,numero);
+    //mostrarPila1(caja1,numero);
+    //mostrarPila2(caja2,numero);
+    //mostrarPila3(caja3,numero);
+    //mostrarPila4(caja4,numero);
+  
+    
  /*      
 cjs[0].Ca = C1[0];
 cjs[0].Cb = C1[1];	
@@ -146,5 +205,15 @@ cjs[3].total = totalC4;
 */	
 
 mtr.join();
+hilo1.join();
+hilo2.join();
+hilo3.join();
+hilo4.join();
+hilo5.join();
+hilo6.join();
+hilo7.join();
+hilo8.join();
+hilo9.join();
+
 	return 0;
 }
