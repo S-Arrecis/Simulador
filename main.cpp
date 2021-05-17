@@ -36,11 +36,10 @@ void mostrarfinal(){
 		
 			system("cls");
 			cout<<"\n\n"<<endl;
-		cout<<"\n\n"<<endl;
-	cout<<endl<<" Pila 1: "<<P1[0] <<" "<<P1[1]<<" "<<P1[2]<<" "<<P1[3]<<" "<<P1[4]<<"			" 
-		 		 " Pila 2: "<<P2[0] <<" "<<P2[1]<<" "<<P2[2]<<" "<<P2[3]<<" "<<P2[4]<<"			"
-		 		 " Pila 3: "<<P3[0] <<" "<<P3[1]<<" "<<P3[2]<<" "<<P3[3]<<" "<<P3[4]<<"			"
-		 		 " Pila 4: "<<P4[0] <<" "<<P4[1]<<" "<<P4[2]<<" "<<P4[3]<<" "<<P4[4]<<"			"
+	cout<<endl<<"Pila 1: "<<P1[0] <<" "<<P1[1]<<" "<<P1[2]<<" "<<P1[3]<<" "<<P1[4]<<" 		" 
+		 		 "Pila 2: "<<P2[0] <<" "<<P2[1]<<" "<<P2[2]<<" "<<P2[3]<<" "<<P2[4]<<"	       "
+		 		 "Pila 3: "<<P3[0] <<" "<<P3[1]<<" "<<P3[2]<<" "<<P3[3]<<" "<<P3[4]<<"		"
+		 		 "Pila 4: "<<P4[0] <<" "<<P4[1]<<" "<<P4[2]<<" "<<P4[3]<<" "<<P4[4]<<"		"
 		  		 <<endl;
 	
 	/*cout<<endl<<" Pila 1: "<<cjs[0].Fa <<" "<<cjs[0].Fb<<" "<<cjs[0].Fc<<"			" 
@@ -151,13 +150,12 @@ int main(){
 	
 
 	
-	
+		thread n(numeros);	
 		
    thread mtr(mostrarfinal);
-
-	numeros();	
 	
-	thread hilo1(mostrarPolicia);
+	
+thread hilo1(mostrarPolicia);
 	thread hilo2(mostrarCaja1);
 	thread hilo3(mostrarCaja2);
 	thread hilo4(mostrarCaja3);
@@ -166,45 +164,22 @@ int main(){
 	thread hilo7(mostrarP2);
 	thread hilo8(mostrarP3);
 	thread hilo9(mostrarP4);
-    //mostrar_Policia(frente,fin,numero);
-    //mostrarC1(frente1,fin1,numero);
-    //mostrarC2(frente2,fin2,numero);
-    //mostrarC3(frente3,fin3,numero);
-    //mostrarC4(frente4,fin4,numero);
-    //mostrarPila1(caja1,numero);
-    //mostrarPila2(caja2,numero);
-    //mostrarPila3(caja3,numero);
-    //mostrarPila4(caja4,numero);
+	
+
+    /*mostrar_Policia(frente,fin,numero);
+   mostrarC1(frente1,fin1,numero);
+     mostrarC2(frente2,fin2,numero);
+     mostrarC3(frente3,fin3,numero);
+   mostrarC4(frente4,fin4,numero);
+   mostrarPila1(caja1,numero);
+   mostrarPila2(caja2,numero);
+   mostrarPila3(caja3,numero);
+   mostrarPila4(caja4,numero);*/
   
     
- /*      
-cjs[0].Ca = C1[0];
-cjs[0].Cb = C1[1];	
-cjs[0].Cc = C1[2];
-cjs[0].Cd = C1[3];
 
-cjs[1].Ca = C2[0];
-cjs[1].Cb = C2[1];	
-cjs[1].Cc = C2[2];
-cjs[1].Cd = C2[3];
 
-cjs[2].Ca = C3[0];
-cjs[2].Cb = C3[1];	
-cjs[2].Cc = C3[2];
-cjs[2].Cd = C3[3];
-
-cjs[3].Ca = C4[0];
-cjs[3].Cb = C4[1];	
-cjs[3].Cc = C4[2];
-cjs[3].Cd = C4[3];
-
-cjs[0].total = totalC1;
-cjs[1].total = totalC2;
-cjs[2].total = totalC3;
-cjs[3].total = totalC4;
-*/	
-
-mtr.join();
+n.join();
 hilo1.join();
 hilo2.join();
 hilo3.join();
@@ -215,5 +190,6 @@ hilo7.join();
 hilo8.join();
 hilo9.join();
 
+mtr.join();
 	return 0;
 }
