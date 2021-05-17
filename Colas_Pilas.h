@@ -200,7 +200,7 @@ void numeros(){
 
     srand(time(NULL));
 		
-	for(contador = 0; contador < 20; contador++){
+	for(contador = 0; contador < 200; contador++){
 		if(cliente <=5){
 		 numero =  1 + rand() % (91 - 1);
          //cout<<"\t\tNumero "<<numero<<" agregado con exito "<<endl;
